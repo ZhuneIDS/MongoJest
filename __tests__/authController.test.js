@@ -2,7 +2,7 @@
 const authController = require('../src/controllers/authController');
 const User = require('../src/models/User');
 
-// Mock the User model
+// mock es hacer una imitación de algo, en este caso de la función User.findOne
 jest.mock('../src/models/User');
 
 describe('Auth Controller', () => {
