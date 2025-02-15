@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes'); // Ensure this path is correct
+const authRoutes = require('./routes/authRoutes'); // Revisar estructura
 const path = require('path');
 
 dotenv.config();
@@ -25,25 +25,25 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
   });
 
-// Connect to MongoDB
+// Conexión a la base de datos
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // 30 seconds timeout for server selection
-    connectTimeoutMS: 30000, // 30 seconds timeout for initial connection
-    socketTimeoutMS: 45000, // 45 seconds timeout for socket operations
+    serverSelectionTimeoutMS: 30000, // debug de tiempo de espera
+    connectTimeoutMS: 30000, // debug de tiempo de espera
+    socketTimeoutMS: 45000, // debug de tiempo de espera
 
   })
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => {
         console.error('MongoDB connection error:');
-        console.error('- Message:', err.message); // Log the error message
-        console.error('- Reason:', err.reason); // Log the reason for the error
-        console.error('- Code:', err.code); // Log the error code
-        console.error('- Full Error:', err); // Log the full error object
+        console.error('- Message:', err.message); // log de mensaje de error
+        console.error('- Reason:', err.reason); // log de razón de error
+        console.error('- Code:', err.code); // log de código de error
+        console.error('- Full Error:', err); // log de error completo
       });
 
-// Start the server
+// empezar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

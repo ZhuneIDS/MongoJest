@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const productSection = document.getElementById('product-section');
     const productList = document.getElementById('product-list');
 
-    // Handle login form submission
+    // Manejar el envío del formulario de inicio de sesión
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                // Save the JWT token in localStorage
+                // guardar token en localStorage
                 localStorage.setItem('token', data.token);
 
-                // Hide login form and show product section
+                // esconder el formulario de inicio de sesión y mostrar la sección de productos
                 loginForm.style.display = 'none';
                 productSection.style.display = 'block';
 
-                // Fetch and display products
+                // fetch y mostrar productos
                 fetchProducts();
             } else {
                 loginMessage.textContent = data.message || 'Login failed';
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fetch products from the backend
+    // fetch y mostrar productos
     async function fetchProducts() {
         try {
             const token = localStorage.getItem('token');
@@ -56,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const products = await response.json();
 
             if (response.ok) {
-                // Display products
+                // display productos
                 productList.innerHTML = products
+                //funcion flecha que recibe un producto y retorna un string
+                //mapea los productos y los une con join
                     .map(product => `<li>${product.name} - $${product.price}</li>`)
                     .join('');
             } else {

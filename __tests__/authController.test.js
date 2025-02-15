@@ -8,16 +8,16 @@ jest.mock('../src/models/User');
 describe('Auth Controller', () => {
   describe('login', () => {
     it('should return a token if login is successful', async () => {
-      // Mock User.findOne to return a user
+      // mock encontrar un usuario
       User.findOne.mockResolvedValue({
         email: 'test@gmail.com',
         password: '12345',
       });
 
-      // Mock bcrypt.compare to return true
+      // Mock bcrypt comparar contraseñas
       jest.spyOn(require('bcrypt'), 'compare').mockResolvedValue(true);
 
-      // Mock jwt.sign to return a token
+      // Mock jwt.sign para devolver un token falso
       jest.spyOn(require('jsonwebtoken'), 'sign').mockReturnValue('fake-token');
 
       const req = {
@@ -38,7 +38,7 @@ describe('Auth Controller', () => {
     });
 
     it('should return an error if login fails', async () => {
-      // Mock User.findOne to return null (user not found)
+      // Mock Usuario no encontrado
       User.findOne.mockResolvedValue(null);
 
       const req = {

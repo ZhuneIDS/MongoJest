@@ -1,6 +1,7 @@
 // src/controllers/productController.js
 const Product = require('../models/Product');
 
+// export de todos los productos
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -10,6 +11,7 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
+// export de un producto
 exports.createProduct = async (req, res) => {
   try {
     const product = new Product(req.body);
@@ -20,6 +22,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
+//export de actualizar un producto con  id
 exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -29,6 +32,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
+// export de eliminar un producto con id
 exports.deleteProduct = async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);

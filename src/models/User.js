@@ -1,6 +1,6 @@
 // src/models/User.js
 const mongoose = require('mongoose');
-
+ // schema de usuario
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },

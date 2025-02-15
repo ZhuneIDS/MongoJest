@@ -1,6 +1,7 @@
 // src/models/Product.js
 const mongoose = require('mongoose');
 
+// producto schema
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
